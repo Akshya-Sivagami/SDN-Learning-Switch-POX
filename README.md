@@ -21,7 +21,7 @@ Single switch with 3 hosts:
 - h1
 - h2
 - h3
-- 
+ 
 ## Setup & Execution Steps
   ### 1. Start POX Controller
   ```bash
@@ -45,4 +45,31 @@ Single switch with 3 hosts:
   ``` h1 ping h2 ```
   Scenario 4: Throughput 
   ``` iperf h1 h2 ```
+
+## Proof of Execution
+
+### Allowed Traffic (h2 → h3) : Demonstrates normal communication between allowed hosts where packets are forwarded correctly.
+![Allowed Bash](screenshots/Allowed_bash.png)
+![Allowed Wireshark](screenshots/Allowed_wireshark.png)
+
+### Blocked Traffic (h1 → h3) : The traffic from h1 to h3 is successfully blocked by the firewall rule implemented in the controller.
+![Blocked Bash](screenshots/Blocked_bash.png)
+![Blocked Wireshark](screenshots/Blocked_wireshark.png)
+
+### Full Network Test (pingall) : Verifies overall connectivity of the network and correct forwarding behavior after MAC learning.
+![PingAll](screenshots/Pingall.png)
+
+### Flow Table : Displays flow entries installed in the switch, confirming dynamic rule installation by the controller.
+![Flow Table](screenshots/FlowTable.png)
+
+### Controller Logs : Shows MAC learning, flooding, forwarding decisions, and firewall blocking actions in real-time.
+![Logs](screenshots/POX_logs.png)
+
+### Performance (Latency & Throughput) : Displays network performance metrics (latency (ping) and throughput (iperf)).
+![Latency & Throughput](screenshots/Latency_Throughput.png)
+![iperf Wireshark](screenshots/iperf_wireshark.png)
+
+
+
+
   
